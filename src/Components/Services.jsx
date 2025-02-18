@@ -7,6 +7,7 @@ const Services = () => {
     { name: 'Electric Works', image: 'electric.jpg' },
     { name: 'Carpentry', image: 'carpentry.jpg' },
     { name: 'Home Renovations', image: 'renovation.jpg' },
+    { name: 'Packers & Movers', image: 'packers & movers'}
   ];
 
   return (
@@ -24,10 +25,20 @@ const Services = () => {
             whileHover={{ scale: 1.1 }}
             className="service-card"
           >
-            <img src={`/images/${service.image}`} alt={service.name} />
-            <h3>{service.name}</h3>
+            <img src={`/images/plumbing.jpg`} alt={plumbing} />
+            <h3>PLUMING</h3>
+            <img src={`/images/painting.jpg`} alt={painting} />
+            <h3>PAINTING</h3>
+            <img src={`/images/electric.jpg`} alt={electric} />
+            <h3>ELECTRIC</h3>
+            <img src={`/images/carpentry.jpg`} alt={carpentry} />
+            <h3>CARPENTRY</h3>
+            <img src={`/images/renovations.jpg`} alt={renovations} />
+            <h3> HOME RENOVATIONS</h3>
+            <img src={`/images/packers & movers.jpg`} alt={packers & movers} />
+            <h3>PACKERS & MOVERS </h3>
           </motion.div>
-        ))}
+        ))} 
       </div>
     </motion.section>
   );
