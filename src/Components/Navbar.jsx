@@ -9,7 +9,9 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="navbar"
     >
-      <div className="logo">Fixigo</div>
+      <div className="logo">
+        <Link to="/">Fixigo</Link>
+      </div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About Us</Link></li>

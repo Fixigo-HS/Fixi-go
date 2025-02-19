@@ -2,18 +2,17 @@ import { motion } from 'framer-motion';
 
 const Services = () => {
   const services = [
-    { name: 'Plumbing', image: 'plumbing.jpg' },
-    { name: 'Painting', image: 'painting.jpg' },
-    { name: 'Electric Works', image: 'electric.jpg' },
-    { name: 'Carpentry', image: 'carpentry.jpg' },
-    { name: 'Home Renovations', image: 'renovation.jpg' },
-    { name: 'Packers & Movers', image: 'packers & movers'}
+    { name: 'Plumbing', image: '/images/plumbing.jpg' },
+    { name: 'Painting', image: '/images/painting.jpg' },
+    { name: 'Electric Works', image: '/images/electrica.jpg' },
+    { name: 'Carpentry', image: '/images/carpentry.jpg' },
+    { name: 'Home Renovations', image: '/images/renovations.jpg' },
   ];
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
       className="services-section"
     >
@@ -22,23 +21,16 @@ const Services = () => {
         {services.map((service, index) => (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
             className="service-card"
           >
-            <img src={`/images/plumbing.jpg`} alt={plumbing} />
-            <h3>PLUMING</h3>
-            <img src={`/images/painting.jpg`} alt={painting} />
-            <h3>PAINTING</h3>
-            <img src={`/images/electric.jpg`} alt={electric} />
-            <h3>ELECTRIC</h3>
-            <img src={`/images/carpentry.jpg`} alt={carpentry} />
-            <h3>CARPENTRY</h3>
-            <img src={`/images/renovations.jpg`} alt={renovations} />
-            <h3> HOME RENOVATIONS</h3>
-            <img src={`/images/packers & movers.jpg`} alt={packers & movers} />
-            <h3>PACKERS & MOVERS </h3>
+            <img src={service.image} alt={service.name} />
+            <h3>{service.name}</h3>
           </motion.div>
-        ))} 
+        ))}
       </div>
     </motion.section>
   );

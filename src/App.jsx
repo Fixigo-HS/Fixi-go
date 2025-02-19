@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Services from './components/Services';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Navbar from './Components/Navbar';
+import About from './Components/About';
+import Services from './Components/Services';
+import Testimonials from './Components/Testimonials';
+import Contact from './Components/Contact';
+import Footer from './Components/Footer';
 import './index.css';
 
 function App() {
@@ -23,14 +23,20 @@ function App() {
   );
 }
 
+import { motion } from 'framer-motion';
+
 function Home() {
   return (
-    <div>
-      <section id="hero" className="hero-section">
-        <h1>Welcome to Fixigo</h1>
-        <p>Your one-stop solution for all home problems.</p>
-      </section>
-    </div>
+    <motion.section
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      id="hero"
+      className="hero-section"
+    >
+      <h1>Welcome to Fixigo</h1>
+      <p>Your one-stop solution for all home problems.</p>
+    </motion.section>
   );
 }
 
