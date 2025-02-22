@@ -262,7 +262,7 @@ body {
 
 .hero-section h1 {
   font-size: 3rem;
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeIn 2s ease-in;
 }
 
 .hero-section p {
