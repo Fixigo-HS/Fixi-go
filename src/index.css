@@ -1,21 +1,92 @@
-/* Service Cards */
-.service-card {
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.services-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
-.service-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
+.services-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #6c63ff, #ff6f61);
+  z-index: -1;
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.3);
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 1.5rem 0;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 2rem 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card img {
+    height: 150px;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+  }
 }
 
 /* Testimonial Cards */
@@ -540,58 +611,6 @@ body {
   color: #555;
 }
 
-/* Services Section */
-.services-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.services-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-}
-
-.service-cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.service-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  width: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.service-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-
-.service-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.service-card p {
-  font-size: 1rem;
-  color: #777;
-}
-
 /* Team Section */
 .team-section {
   padding: 4rem 2rem;
@@ -705,4 +724,28 @@ body {
   .team-card {
     width: 80%;
   }
+}
+
+/*button-getstart*/
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(45deg, #6c63ff, #ff6f61);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
+}
+
+.cta-button:active {
+  transform: translateY(0);
 }

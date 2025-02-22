@@ -92,7 +92,7 @@ const AboutUs = () => {
       <div className="cta-section">
         <h2>Ready to Transform Your Home?</h2>
         <p>Contact us today for a free consultation!</p>
-        <button className="cta-button">Get Started</button>
+        <a href="/Contact.jsx" className="cta-button"> Get Started </a>
       </div>
     </motion.section>
   );

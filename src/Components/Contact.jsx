@@ -22,15 +22,15 @@ const ContactUs = () => {
         <h2>Get in Touch</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" placeholder="John Doe" required />
+            <label htmlFor="name">Name</label>
+            <input type="text" id="name" placeholder="" required />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Your Email</label>
-            <input type="email" id="email" placeholder="johndoe@example.com" required />
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" placeholder="" required />
           </div>
           <div className="form-group">
-            <label htmlFor="message">Your Message</label>
+            <label htmlFor="message">Message</label>
             <textarea id="message" placeholder="How can we help you?" required></textarea>
           </div>
           <button type="submit" className="submit-button">Send Message</button>
@@ -40,7 +40,7 @@ const ContactUs = () => {
       {/* Call-to-Action Section */}
       <div className="cta-section">
         <h2>Need Immediate Assistance?</h2>
-        <p>Call us now at <strong>+1 (123) 456-7890</strong> or email us at <strong>support@fixigo.com</strong>.</p>
+        <p>Call us now at <strong>+91 8688939382</strong> or email us at <strong>Consult.fixigo@gmail.com</strong>.</p>
         <button className="cta-button">Call Now</button>
       </div>
     </motion.section>
