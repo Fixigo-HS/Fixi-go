@@ -41,7 +41,7 @@ const ContactUs = () => {
       <div className="cta-section">
         <h2>Need Immediate Assistance?</h2>
         <p>Call us now at <strong>+91 8688939382</strong> or email us at <strong>Consult.fixigo@gmail.com</strong>.</p>
-        <button className="cta-button">Call Now</button>
+        <a href="tel:8688939382" className="cta-button">Call Now</a>
       </div>
     </motion.section>
   );
