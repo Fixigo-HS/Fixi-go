@@ -345,7 +345,7 @@ body {
   background-image: url('https://images.unsplash.com/photo-1589362281138-e3f7ebe47f1a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size:cover;
   background-position: center;
-  height: 525px;
+  height: 550px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -583,59 +583,6 @@ body {
   margin: 0 auto;
   line-height: 1.8;
   color: #555;
-}
-
-/* Team Section */
-.team-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f9f9f9;
-}
-
-.team-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-}
-
-.team-cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.team-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  width: 250px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.team-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-
-.team-card h4 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.team-card p {
-  font-size: 1rem;
-  color: #777;
 }
 
 /* Call-to-Action Section */
