@@ -25,45 +25,12 @@ const AboutUs = () => {
           needs with professionalism and care.
         </p>
       </div>
-
-      {/* Services Section */}
-
-      {/* Team Section */}
-      <div className="team-section">
-        <h2>Meet Our Team</h2>
-        <div className="team-cards">
-          <div className="team-card">
-            <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Team Member 1"
-            />
-            <h4>John Doe</h4>
-            <p>CEO & Founder</p>
-          </div>
-          <div className="team-card">
-            <img
-              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Team Member 2"
-            />
-            <h4>Jane Smith</h4>
-            <p>Operations Manager</p>
-          </div>
-          <div className="team-card">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Team Member 3"
-            />
-            <h4>Michael Johnson</h4>
-            <p>Lead Technician</p>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Call-to-Action Section */}
       <div className="cta-section">
         <h2>Ready to Transform Your Home?</h2>
         <p>Contact us today for a free consultation!</p>
-        <a href="http://localhost:5174/contact" className="cta-button"> Get Started </a>
+        <a href="http://localhost:5173/contact" className="cta-button"> Get Started </a>
       </div>
     </motion.section>
   );
