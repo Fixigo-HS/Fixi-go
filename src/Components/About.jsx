@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Contact from "./Contact";
 
 const AboutUs = () => {
   return (
@@ -9,8 +10,8 @@ const AboutUs = () => {
       className="about-us"
     >
       {/* Hero Section */}
-      <div className="hero-section">
-        <div className="hero-content">
+      <div className="hero-section2">
+        <div className="hero-content2">
           <h1>Welcome to Fixigo Home Services</h1>
           <p>Your trusted partner for all home maintenance and repair needs.</p>
         </div>
@@ -63,7 +64,7 @@ const AboutUs = () => {
       <div className="cta-section">
         <h2>Ready to Transform Your Home?</h2>
         <p>Contact us today for a free consultation!</p>
-        <a href="http://localhost:5174/contact" className="cta-button"> Get Started </a>
+        <a href="/Contact" className="cta-button"> Get Started </a>
       </div>
     </motion.section>
   );

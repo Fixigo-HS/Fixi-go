@@ -10,8 +10,8 @@ const ContactUs = () => {
       className="contact-us"
     >
       {/* Hero Section */}
-      <div className="hero-section">
-        <div className="hero-content">
+      <div className="hero-section1">
+        <div className="hero-content1">
           <h1>Contact Fixigo Home Services</h1>
           <p>We're here to help with all your home service needs. Get in touch today!</p>
         </div>
