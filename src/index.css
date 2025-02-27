@@ -1,91 +1,46 @@
+/* Services Section */
 .services-section {
-  padding: 4rem 2rem;
+  padding: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-}
-
-.services-section h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 2rem;
-  font-weight: 600;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .service-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #6c63ff, #ff6f61);
-  z-index: -1;
-  border-radius: 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.service-card:hover::before {
-  opacity: 1;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.3);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .service-card img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
-  border-radius: 15px 15px 0 0;
+  border-radius: 8px;
 }
 
 .service-card h3 {
-  font-size: 1.5rem;
-  color: #fff;
-  margin: 1.5rem 0;
-  font-weight: 600;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .services-section {
-    padding: 2rem 1rem;
-  }
-
+/* Responsive Grid */
+@media (max-width: 1024px) {
   .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
   }
+}
 
-  .service-card img {
-    height: 150px;
-  }
-
-  .service-card h3 {
-    font-size: 1.25rem;
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 column for mobile */
   }
 }
 
