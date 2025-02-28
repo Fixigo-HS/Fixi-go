@@ -40,7 +40,7 @@ const ContactUs = () => {
       {/* Call-to-Action Section */}
       <div className="cta-section">
         <h2>Need Immediate Assistance?</h2>
-        <p>Call us now at <strong>+91 8688939382</strong> or email us at <a href="mailto:Consult.fixigo@gmail.com" >Mail Us</a>.</p>
+        <p>Call us now at <strong>+91 8688939382</strong> or email us at <a href="mailto:Consult.fixigo@gmail.com" >Consult.fixigo@gmail.com</a>.</p>
         <a href="tel:8688939382" className="cta-button">Call Now</a>
       </div>
     </motion.section>
