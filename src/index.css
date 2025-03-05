@@ -67,59 +67,7 @@
   transform: translateY(-10px);
 }
 
-/* Navbar Styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #333;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar .logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #ff6b6b;
-}
-
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-}
-
+/* Footer Style */
 .footer {
   background-color: #333;
   color: #fff;
@@ -138,15 +86,40 @@
 }
 
 .icon {
-  color: #fff; /* Icon color */
-  font-size: 24px; /* Icon size */
-  transition: color 0.3s ease; /* Smooth color transition */
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth hover effect */
 }
 
 .icon:hover {
-  color: #fff; /* Change color on hover (e.g., blue for Facebook) */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  opacity: 0.8; /* Slightly fade on hover */
 }
 
+/* Instagram Icon */
+.instagram {
+  color: #e4405f; /* Instagram brand color */
+}
+
+/* Facebook Icon */
+.facebook {
+  color: #1877f2; /* Facebook brand color */
+}
+
+/* X (Twitter) Icon */
+.x-logo {
+  color: #000; /* X logo color (black) */
+}
+
+.x-logo:hover {
+  color: #1da1f2; /* Change to blue on hover (optional) */
+}
+
+/* Ensure copyright text is in a single line */
+.footer p {
+  white-space: nowrap; /* Prevent text from wrapping */
+  margin: 0; /* Remove default margin */
+}
 
 /* General Styles */
 body {
