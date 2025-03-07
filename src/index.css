@@ -56,10 +56,12 @@
 
 /*Testimonials */
 /* Testimonials Section */
+/* Testimonials Section */
 .testimonials-section {
   padding: 80px 20px;
   background-color: #f9f9f9;
   text-align: center;
+  overflow: hidden; /* Ensure animations don't overflow */
 }
 
 .testimonials-container {
@@ -72,6 +74,7 @@
   font-weight: 700;
   color: #333;
   margin-bottom: 10px;
+  animation: fadeInDown 1s ease-out; /* Fade-in animation */
 }
 
 .testimonials-divider {
@@ -79,12 +82,14 @@
   height: 4px;
   background-color: #007bff;
   margin: 0 auto 20px;
+  animation: scaleIn 1s ease-out; /* Scale-in animation */
 }
 
 .testimonials-subheading {
   font-size: 1.1rem;
   color: #666;
   margin-bottom: 40px;
+  animation: fadeInUp 1s ease-out; /* Fade-in animation */
 }
 
 .testimonials-grid {
@@ -100,7 +105,22 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0; /* Start invisible for animation */
+  animation: fadeInUp 0.5s ease-out forwards; /* Fade-in animation */
 }
+
+.testimonial-card:nth-child(1) { animation-delay: 0.2s; }
+.testimonial-card:nth-child(2) { animation-delay: 0.4s; }
+.testimonial-card:nth-child(3) { animation-delay: 0.6s; }
+.testimonial-card:nth-child(4) { animation-delay: 0.8s; }
+.testimonial-card:nth-child(5) { animation-delay: 1s; }
+.testimonial-card:nth-child(6) { animation-delay: 1.2s; }
+.testimonial-card:nth-child(7) { animation-delay: 1.4s; }
+.testimonial-card:nth-child(8) { animation-delay: 1.6s; }
+.testimonial-card:nth-child(9) { animation-delay: 1.8s; }
+.testimonial-card:nth-child(10) { animation-delay: 2s; }
+.testimonial-card:nth-child(11) { animation-delay: 2.2s; }
+.testimonial-card:nth-child(12) { animation-delay: 2.4s; }
 
 .testimonial-card:hover {
   transform: translateY(-10px);
@@ -115,6 +135,7 @@
   font-size: 3rem;
   color: #007bff;
   margin-bottom: 20px;
+  animation: bounceIn 1s ease-out; /* Bounce-in animation */
 }
 
 .testimonial-text {
@@ -133,6 +154,49 @@
   font-weight: 600;
   color: #333;
   margin: 0;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Responsive Design */
