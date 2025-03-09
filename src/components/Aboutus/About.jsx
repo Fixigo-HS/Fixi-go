@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import Contact from "./Contact";
+
 
 const AboutUs = () => {
   return (

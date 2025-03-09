@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-
 const Services = () => {
   const services = [
     { name: 'Plumbing', image: '/images/plumbing.jpg' },
