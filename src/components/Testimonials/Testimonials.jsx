@@ -11,7 +11,7 @@ const Testimonials = () => {
   });
   
   // Initial testimonials data
-  const [testimonials, setTestimonials] = useState([
+  const initialTestimonials = [
     {
       name: 'Rajesh Sharma',
       review: 'Fixigo transformed our kitchen with exceptional craftsmanship. The team was professional from start to finish, completing the project on time and within budget.',
@@ -72,7 +72,20 @@ const Testimonials = () => {
       review: 'Our building has used Fixigo for maintenance contracts for three years now. Their preventative maintenance program has saved our association thousands in potential repairs.',
       rating: 4
     }
-  ]);
+  ];
+
+  // Use localStorage to persist testimonials
+  const [testimonials, setTestimonials] = useState(() => {
+    // Try to get testimonials from localStorage
+    const savedTestimonials = localStorage.getItem('fixigoTestimonials');
+    // If we have saved testimonials, parse and use them, otherwise use initial data
+    return savedTestimonials ? JSON.parse(savedTestimonials) : initialTestimonials;
+  });
+
+  // Save testimonials to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('fixigoTestimonials', JSON.stringify(testimonials));
+  }, [testimonials]);
 
   // Calculate average rating
   const averageRating = (testimonials.reduce((acc, item) => acc + item.rating, 0) / testimonials.length).toFixed(1);
@@ -158,9 +171,10 @@ const Testimonials = () => {
         rating: formData.rating
       };
       
+      // Update testimonials state (this will trigger the useEffect to save to localStorage)
       setTestimonials([newTestimonial, ...testimonials]);
       
-      // Show success message and reset/hide form
+      // Reset form and hide it
       setFormData({
         name: '',
         review: '',
@@ -170,6 +184,14 @@ const Testimonials = () => {
       
       // Show a success message
       alert("Thank you for your review! It has been added to our testimonials.");
+    }
+  };
+
+  // Reset to default testimonials (for admin purposes)
+  const resetToDefaultTestimonials = () => {
+    if (window.confirm("Are you sure you want to reset all testimonials to default? This will remove all user-submitted testimonials.")) {
+      setTestimonials(initialTestimonials);
+      alert("Testimonials have been reset to default.");
     }
   };
 
@@ -233,6 +255,11 @@ const Testimonials = () => {
           <button className="add-review-button" onClick={toggleForm}>
             Share Your Experience
           </button>
+          
+          {/* Optional: Admin button to reset testimonials - can be hidden in production */}
+          {/* <button className="reset-button" onClick={resetToDefaultTestimonials} style={{marginLeft: '10px'}}>
+            Reset Testimonials (Admin)
+          </button> */}
         </div>
         
         {/* Review Form */}
