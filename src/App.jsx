@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
 import About from './components/Aboutus/About';
 import Services from './components/Services/Services';
 import Testimonials from './components/Testimonials/Testimonials';
@@ -23,15 +24,15 @@ function App() {
   );
 }
 
-function Home() {
-  return (
-    <div>
-      <section id="hero" className="hero-section">
-        <h1>Welcome to Fixigo</h1>
-        <p>Your one-stop solution for all home problems.</p>
-      </section>
-    </div>
-  );
-}
+// function Home() {
+//   return (
+//     <div>
+//       <section id="hero" className="hero-section">
+//         <h1>Welcome to Fixigo</h1>
+//         <p>Your one-stop solution for all home problems.</p>
+//       </section>
+//     </div>
+//   );
+// }
 
 export default App;
