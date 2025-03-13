@@ -1,4 +1,4 @@
-/* Services Section */
+/*==== SERVICES SECTION ====*/
 .services-section {
   padding: 2rem;
   text-align: center;
@@ -55,7 +55,7 @@
 }
 
 
-/*==== NAVBAR STYLE ====*/
+/*==== NAVBAR SECTION ====*/
 .navbar {
   display: flex;
   justify-content: space-between;
