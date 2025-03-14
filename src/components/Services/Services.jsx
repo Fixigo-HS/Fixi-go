@@ -185,6 +185,7 @@ const Services = () => {
     }
   ];
 
+  // This is the key logic that was broken - filtering the services based on activeTab
   const filteredServices = activeTab === 'all' 
     ? services 
     : services.filter(service => service.category === activeTab);
@@ -231,8 +232,15 @@ const Services = () => {
     }
   };
 
+  // Enhanced tab change function with animation reset
   const handleTabChange = (tabId) => {
+    // Reset grid animation to prepare for new category
+    controlsGrid.set("hidden");
     setActiveTab(tabId);
+    // Start animation again after a short delay
+    setTimeout(() => {
+      controlsGrid.start("visible");
+    }, 100);
   };
 
   const BackgroundShapes = () => (
@@ -350,121 +358,116 @@ const Services = () => {
           </motion.div>
         )}
         
-        <ServiceIcon path={service.icon} />
-        
-        <motion.div 
-          className="service-content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 + (index * 0.05) }}
-        >
-          <motion.h3 
-            className="service-name"
-            animate={isHovered ? { color: "#4361ee" } : { color: "#1d1d1d" }}
-            transition={{ duration: 0.3 }}
+        <div className="service-card-content">
+          <ServiceIcon path={service.icon} />
+          
+          <h3 className="service-title">{service.name}</h3>
+          
+          <motion.p 
+            className="service-description"
+            initial={{ opacity: 0.7 }}
+            animate={{ opacity: isHovered ? 1 : 0.7 }}
           >
-            {service.name}
-          </motion.h3>
-          <p className="service-description">{service.description}</p>
+            {service.description}
+          </motion.p>
           
           <div className="service-stats">
-            {service.stats.map((stat, statIndex) => (
-              <div key={statIndex} className="stat-item">
+            {service.stats.map((stat, i) => (
+              <motion.div 
+                key={i} 
+                className="stat-item"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + (i * 0.1) }}
+              >
                 <span className="stat-value">{stat.value}</span>
                 <span className="stat-label">{stat.label}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
           
           <motion.button 
-            className="service-button"
+            className="service-action-btn"
             variants={buttonVariants}
             initial="rest"
             whileHover="hover"
             whileTap="tap"
           >
-            Request Service
-            <svg 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2"
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              width="20" 
-              height="20"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+            Learn More
           </motion.button>
-        </motion.div>
+        </div>
       </motion.div>
     );
   };
 
   return (
-    <section className="premium-services-section">
+    <section className="services-section">
       <BackgroundShapes />
       
-      <div className="premium-services-container">
+      <div className="container services-container">
         <motion.div 
-          className="premium-services-header"
+          className="services-header"
           ref={headerRef}
+          initial={{ opacity: 0, y: 50 }}
           animate={controlsHeader}
-          initial={{ opacity: 0, y: -50 }}
         >
-          <h2 className="premium-services-title">Premium Services</h2>
-          <p className="premium-services-subtitle">Exceptional quality and reliability for all your home service needs</p>
-          
-          <motion.div 
-            className="premium-services-tabs"
-            animate={controlsTabs}
-            initial={{ opacity: 0, y: 20 }}
-          >
-            {categories.map(category => (
-              <motion.button
-                key={category.id}
-                className={`tab-button ${activeTab === category.id ? 'active' : ''}`}
-                onClick={() => handleTabChange(category.id)}
-                variants={buttonVariants}
-                initial="rest"
-                whileHover="hover"
-                whileTap="tap"
-              >
-                {category.name}
-              </motion.button>
-            ))}
-          </motion.div>
+          <h2 className="section-title">Our Services</h2>
+          <p className="section-subtitle">
+            Professional home services with guaranteed quality and competitive pricing
+          </p>
         </motion.div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            ref={gridRef}
-            key={activeTab}
-            className="premium-services-grid"
-            variants={containerVariants}
-            initial="hidden"
-            animate={controlsGrid}
-            exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          >
+        
+        <motion.div 
+          className="services-tabs"
+          initial={{ opacity: 0, y: 30 }}
+          animate={controlsTabs}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              className={`tab-button ${activeTab === category.id ? 'active' : ''}`}
+              onClick={() => handleTabChange(category.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category.name}
+              {activeTab === category.id && (
+                <motion.div 
+                  className="active-indicator" 
+                  layoutId="activeTab"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </motion.button>
+          ))}
+        </motion.div>
+        
+        <motion.div 
+          className="services-grid"
+          ref={gridRef}
+          variants={containerVariants}
+          initial="hidden"
+          animate={controlsGrid}
+        >
+          <AnimatePresence>
             {filteredServices.map((service, index) => (
               <ServiceCard 
                 key={service.id} 
                 service={service} 
-                index={index} 
+                index={index}
               />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </motion.div>
         
         <motion.div 
           className="services-cta"
           ref={ctaRef}
+          initial={{ opacity: 0, y: 40 }}
           animate={controlsCta}
-          initial={{ opacity: 0, y: 50 }}
         >
-          <h3>Don't see what you need?</h3>
-          <p>We offer many more specialized services tailored to your unique requirements</p>
+          <h3>Need a service not listed here?</h3>
+          <p>Contact us for custom solutions tailored to your specific needs</p>
           <motion.button 
             className="cta-button"
             variants={buttonVariants}
@@ -472,7 +475,7 @@ const Services = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            View All Services
+            Request Custom Service
           </motion.button>
         </motion.div>
       </div>
