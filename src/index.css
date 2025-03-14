@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*==== SERVICES SECTION ====*/
 .services-section {
   padding: 2rem;
@@ -182,42 +183,13 @@
     color: #3498db;
   }
 }
+=======
+>>>>>>> d814afd36489bdba8d41058ba99e5a11f0f984fc
 
 
 
 
-/*==== HOME SECTION ====*/
-.hero-section {
-  background: url('https://images.unsplash.com/photo-1738168246881-40f35f8aba0a?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-  background-size:cover;
-  background-position: center;
-  width: 100vw;  /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  object-fit: cover; /* Ensures the image covers the screen */ 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: rgb(7, 7, 7);
-  position: relative;
-  padding: auto;
-}
-.hero-section h1 {
-  font-size: 3rem;
-  animation: fadeIn 2s ease-in;
-}
-.hero-section p {
-  font-size: 1.5rem;
-  animation: fadeIn 3s ease-in-out;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
 
 
 
@@ -1206,154 +1178,3 @@
 
 
 
-/*==== ABOUT SECTION ====*/
-.about-us {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-}
-
-/* Hero Section */
-.hero-section2 {
-  background-image: url('https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-
-.hero-section2::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.hero-content2 {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-content2 h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.hero-content2 p {
-  font-size: 1.25rem;
-}
-
-/* Mission Section */
-.mission-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f9f9f9;
-}
-
-.mission-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
-.mission-section p {
-  font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.8;
-  color: #555;
-}
-
-/* Call-to-Action Section */
-.cta-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, #6c63ff, #ff6f61);
-  color: white;
-}
-
-.cta-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.cta-section p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.cta-button {
-  padding: 0.8rem 2rem;
-  background: white;
-  color: #6c63ff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
-}
-
-.cta-button:active {
-  transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .service-cards,
-  .team-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .service-card,
-  .team-card {
-    width: 80%;
-  }
-}
-
-/*button-getstart*/
-.cta-button {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  background: linear-gradient(45deg, #6c63ff, #ff6f61);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none; /* Remove underline */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
-}
-
-.cta-button:active {
-  transform: translateY(0);
-}
