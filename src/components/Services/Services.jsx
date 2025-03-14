@@ -1,10 +1,62 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import './Services.css';
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [hoveredService, setHoveredService] = useState(null);
+  const controlsHeader = useAnimation();
+  const controlsTabs = useAnimation();
+  const controlsGrid = useAnimation();
+  const controlsCta = useAnimation();
+  
+  const [headerRef, headerInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  
+  const [gridRef, gridInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const [ctaRef, ctaInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  useEffect(() => {
+    if (headerInView) {
+      controlsHeader.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut" }
+      });
+      
+      controlsTabs.start({
+        opacity: 1,
+        y: 0,
+        transition: { delay: 0.5, duration: 0.5 }
+      });
+    }
+  }, [headerInView, controlsHeader, controlsTabs]);
+
+  useEffect(() => {
+    if (gridInView) {
+      controlsGrid.start("visible");
+    }
+  }, [gridInView, controlsGrid]);
+
+  useEffect(() => {
+    if (ctaInView) {
+      controlsCta.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+      });
+    }
+  }, [ctaInView, controlsCta]);
 
   const categories = [
     { id: 'all', name: 'All Services' },
@@ -133,6 +185,7 @@ const Services = () => {
     }
   ];
 
+  // This is the key logic that was broken - filtering the services based on activeTab
   const filteredServices = activeTab === 'all' 
     ? services 
     : services.filter(service => service.category === activeTab);
@@ -143,7 +196,7 @@ const Services = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
+        delayChildren: 0.2
       }
     }
   };
@@ -161,154 +214,268 @@ const Services = () => {
     }
   };
 
+  const buttonVariants = {
+    rest: { scale: 1 },
+    hover: { 
+      scale: 1.05,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    },
+    tap: { 
+      scale: 0.95,
+      transition: {
+        duration: 0.1,
+        ease: "easeIn"
+      }
+    }
+  };
+
+  // Enhanced tab change function with animation reset
   const handleTabChange = (tabId) => {
+    // Reset grid animation to prepare for new category
+    controlsGrid.set("hidden");
     setActiveTab(tabId);
+    // Start animation again after a short delay
+    setTimeout(() => {
+      controlsGrid.start("visible");
+    }, 100);
+  };
+
+  const BackgroundShapes = () => (
+    <div className="services-background">
+      <motion.div 
+        className="bg-shape shape-1"
+        animate={{
+          x: [0, 20, 0],
+          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+      <motion.div 
+        className="bg-shape shape-2"
+        animate={{
+          x: [0, -30, 0],
+          y: [0, -20, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+      <motion.div 
+        className="bg-shape shape-3"
+        animate={{
+          x: [0, 25, 0],
+          y: [0, -15, 0],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+    </div>
+  );
+
+  const ServiceIcon = ({ path }) => {
+    return (
+      <div className="service-icon-container">
+        <svg 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          className="service-icon"
+        >
+          <motion.path 
+            d={path} 
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ 
+              duration: 1.5, 
+              ease: "easeInOut",
+              delay: 0.2
+            }}
+          />
+        </svg>
+        
+        <motion.div 
+          className="icon-backdrop"
+          initial={{ scale: 0, rotate: -10 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ 
+            duration: 0.5, 
+            delay: 0.2,
+            type: "spring",
+            stiffness: 150
+          }}
+        />
+      </div>
+    );
+  };
+
+  const ServiceCard = ({ service, index }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    
+    return (
+      <motion.div
+        key={service.id}
+        className={`premium-service-card ${service.featured ? 'featured' : ''}`}
+        variants={itemVariants}
+        whileHover={{ 
+          scale: 1.03, 
+          boxShadow: "0px 25px 50px rgba(0, 0, 0, 0.12)",
+          y: -5,
+        }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        initial="hidden"
+        animate="visible"
+        transition={{
+          delay: index * 0.1
+        }}
+      >
+        {service.featured && (
+          <motion.div 
+            className="feature-badge"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + (index * 0.1) }}
+          >
+            <span>Featured</span>
+          </motion.div>
+        )}
+        
+        <div className="service-card-content">
+          <ServiceIcon path={service.icon} />
+          
+          <h3 className="service-title">{service.name}</h3>
+          
+          <motion.p 
+            className="service-description"
+            initial={{ opacity: 0.7 }}
+            animate={{ opacity: isHovered ? 1 : 0.7 }}
+          >
+            {service.description}
+          </motion.p>
+          
+          <div className="service-stats">
+            {service.stats.map((stat, i) => (
+              <motion.div 
+                key={i} 
+                className="stat-item"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + (i * 0.1) }}
+              >
+                <span className="stat-value">{stat.value}</span>
+                <span className="stat-label">{stat.label}</span>
+              </motion.div>
+            ))}
+          </div>
+          
+          <motion.button 
+            className="service-action-btn"
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Learn More
+          </motion.button>
+        </div>
+      </motion.div>
+    );
   };
 
   return (
-    <section className="premium-services-section">
-      <div className="services-background">
-        <div className="bg-shape shape-1"></div>
-        <div className="bg-shape shape-2"></div>
-        <div className="bg-shape shape-3"></div>
-      </div>
+    <section className="services-section">
+      <BackgroundShapes />
       
-      <div className="premium-services-container">
+      <div className="container services-container">
         <motion.div 
-          className="premium-services-header"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="services-header"
+          ref={headerRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsHeader}
         >
-          <h2 className="premium-services-title">Premium Services</h2>
-          <p className="premium-services-subtitle">Exceptional quality and reliability for all your home service needs</p>
-          
-          <motion.div 
-            className="premium-services-tabs"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            {categories.map(category => (
-              <motion.button
-                key={category.id}
-                className={`tab-button ${activeTab === category.id ? 'active' : ''}`}
-                onClick={() => handleTabChange(category.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category.name}
-              </motion.button>
-            ))}
-          </motion.div>
+          <h2 className="section-title">Our Services</h2>
+          <p className="section-subtitle">
+            Professional home services with guaranteed quality and competitive pricing
+          </p>
         </motion.div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            className="premium-services-grid"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          >
-            {filteredServices.map((service) => (
-              <motion.div
-                key={service.id}
-                className={`premium-service-card ${service.featured ? 'featured' : ''} ${hoveredService === service.id ? 'hovered' : ''}`}
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.03, 
-                  boxShadow: "0px 25px 50px rgba(0, 0, 0, 0.12)",
-                  transition: { duration: 0.3 }
-                }}
-                onHoverStart={() => setHoveredService(service.id)}
-                onHoverEnd={() => setHoveredService(null)}
-              >
-                {service.featured && (
-                  <div className="feature-badge">
-                    <span>Featured</span>
-                  </div>
-                )}
-                
-                <div className="service-icon-container">
-                  <svg 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="1.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="service-icon"
-                  >
-                    <path d={service.icon} />
-                  </svg>
-                  
-                  <motion.div 
-                    className="icon-backdrop"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  />
-                </div>
-                
+        
+        <motion.div 
+          className="services-tabs"
+          initial={{ opacity: 0, y: 30 }}
+          animate={controlsTabs}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              className={`tab-button ${activeTab === category.id ? 'active' : ''}`}
+              onClick={() => handleTabChange(category.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category.name}
+              {activeTab === category.id && (
                 <motion.div 
-                  className="service-content"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <h3 className="service-name">{service.name}</h3>
-                  <p className="service-description">{service.description}</p>
-                  
-                  <div className="service-stats">
-                    {service.stats.map((stat, index) => (
-                      <div key={index} className="stat-item">
-                        <span className="stat-value">{stat.value}</span>
-                        <span className="stat-label">{stat.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <motion.button 
-                    className="service-button"
-                    whileHover={{ scale: 1.05, backgroundColor: '#4361ee' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Request Service
-                    <svg 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2"
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      width="20" 
-                      height="20"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </motion.button>
-                </motion.div>
-              </motion.div>
+                  className="active-indicator" 
+                  layoutId="activeTab"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </motion.button>
+          ))}
+        </motion.div>
+        
+        <motion.div 
+          className="services-grid"
+          ref={gridRef}
+          variants={containerVariants}
+          initial="hidden"
+          animate={controlsGrid}
+        >
+          <AnimatePresence>
+            {filteredServices.map((service, index) => (
+              <ServiceCard 
+                key={service.id} 
+                service={service} 
+                index={index}
+              />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </motion.div>
         
         <motion.div 
           className="services-cta"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          ref={ctaRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={controlsCta}
         >
-          <h3>Don't see what you need?</h3>
-          <p>We offer many more specialized services tailored to your unique requirements</p>
+          <h3>Need a service not listed here?</h3>
+          <p>Contact us for custom solutions tailored to your specific needs</p>
           <motion.button 
             className="cta-button"
-            whileHover={{ scale: 1.05, backgroundColor: '#3730a3' }}
-            whileTap={{ scale: 0.95 }}
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
           >
-            View All Services
+            Request Custom Service
           </motion.button>
         </motion.div>
       </div>

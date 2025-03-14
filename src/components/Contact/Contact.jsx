@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Contact.css'
 
 const ContactUs = () => {
   const form = useRef();
