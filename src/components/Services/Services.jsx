@@ -468,12 +468,13 @@ const Services = () => {
         >
           <h3>Need a service not listed here?</h3>
           <p>Contact us for custom solutions tailored to your specific needs</p>
-          <motion.button 
+          <motion.button
             className="cta-button"
             variants={buttonVariants}
             initial="rest"
             whileHover="hover"
             whileTap="tap"
+            onClick={() => window.location.href = 'http://localhost:5173/contact'}
           >
             Request Custom Service
           </motion.button>
